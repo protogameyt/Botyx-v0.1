@@ -2,145 +2,163 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Télécharger ProtoOS</title>
-    <link rel="icon" type="image/png" href="logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Botyx - Application de bureau</title>
     <style>
-        /* Défilement fluide */
-        html { scroll-behavior: smooth; }
-
-        body { 
-            background: linear-gradient(rgba(20, 20, 20, 0.85), rgba(20, 20, 20, 0.85)), url('logo.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: #e0e0e0; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            margin: 0; 
-            padding-top: 70px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #313338;
+            color: #dbdee1;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #2b2d31;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #1f2023;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(180deg, #2b2d31 0%, #313338 100%);
+        }
+        .hero h1 {
+            font-size: 48px;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 18px;
+            color: #949ba4;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+        }
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .btn-download {
+            background-color: #5865f2;
+            color: white;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.2s;
+            display: inline-block;
+        }
+        .btn-download:hover {
+            background-color: #4752c4;
+        }
+        .btn-github {
+            background-color: #2b2d31;
+            color: white;
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            border: 1px solid #4e5058;
+            text-decoration: none;
+            transition: background 0.2s;
+            display: inline-block;
+        }
+        .btn-github:hover {
+            background-color: #35373c;
+        }
+        .features {
+            max-width: 900px;
+            margin: 80px auto;
+            padding: 0 20px;
             text-align: center;
         }
-
-        /* NAVBAR */
-        .navbar {
-            background-color: rgba(10, 10, 10, 0.95);
-            border-bottom: 2px solid #e74c3c;
-            height: 70px; width: 100%; position: fixed; top: 0; left: 0;
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0 50px; z-index: 1000; box-sizing: border-box;
+        .features h2 {
+            font-size: 32px;
+            color: #ffffff;
+            margin-bottom: 40px;
         }
-
-        .nav-links { display: flex; align-items: center; gap: 25px; }
-        .navbar a { color: #bbb; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 0.85em; transition: 0.3s; }
-        .navbar a:hover { color: #e74c3c; }
-        .navbar .brand { color: white; font-size: 1.4em; letter-spacing: 2px; font-weight: 800; }
-
-        .btn-nav-download { background-color: #e74c3c; color: white !important; padding: 10px 20px; border-radius: 4px; }
-
-        /* SECTIONS */
-        section { padding: 100px 20px; max-width: 900px; margin: auto; border-bottom: 1px solid #333; }
-
-        .download-box {
-            background: rgba(30, 30, 30, 0.9); border: 1px solid #444; border-radius: 12px;
-            padding: 40px; box-shadow: 0 20px 40px rgba(0,0,0,0.8); display: inline-block;
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            text-align: left;
         }
-
-        .btn-main-download {
-            background-color: #e74c3c; color: white; padding: 22px 55px; font-size: 1.5em;
-            border-radius: 6px; font-weight: bold; border: none; cursor: pointer; transition: 0.3s;
+        .feature-card {
+            background-color: #2b2d31;
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid #1f2023;
         }
-
-        .btn-main-download:hover { background-color: #c0392b; transform: translateY(-5px); }
-
-        .card-container { display: flex; gap: 20px; justify-content: center; margin-top: 30px; }
-        .card { background: rgba(255,255,255,0.05); padding: 20px; border-radius: 10px; width: 250px; }
-        .card h3 { color: #e74c3c; }
-
-        footer { background-color: #0a0a0a; padding: 60px 20px; border-top: 1px solid #e74c3c; }
-        
-        .discord-link {
-    color: #5865F2;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.2em;
-    padding: 10px 25px;
-    border: 2px solid #5865F2;
-    border-radius: 8px;
-    display: inline-block;
-    transition: 0.3s;
-    margin-bottom: 15px;
-}
-
-.discord-link:hover {
-    background-color: #5865F2;
-    color: white;
-    box-shadow: 0 0 20px rgba(88, 101, 242, 0.6);
-}
-
+        .feature-card h3 {
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        .feature-card p {
+            color: #949ba4;
+            font-size: 14px;
+        }
+        footer {
+            text-align: center;
+            padding: 40px;
+            background-color: #1a1b1e;
+            color: #80848e;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="brand">PROTO OS</div>
-        <div class="nav-links">
-            <a href="#accueil">Accueil</a>
-            <a href="#docs">Docs</a>
-            <a href="#forum">Forum</a>
-            <a href="#aide">Aide</a>
-            <a href="#accueil" class="btn-nav-download">TÉLÉCHARGER</a>
-        </div>
-    </nav>
+    <header>
+        <div class="logo">BOTYX</div>
+    </header>
 
-    <!-- SECTION ACCUEIL -->
-    <section id="accueil">
-        <h1>ProtoOS v1.0</h1>
-        <p style="font-size: 1.3em; color: #ccc;">Le futur de l'open-source, aujourd'hui.</p>
-        <div class="download-box">
-            <a href="/home/proto/Documents/windows" class="btn-main-download" style="text-decoration: none;" download>OBTENIR L'ISO</a>
+    <section class="hero">
+        <h1>Discutez, créez et gérez vos serveurs</h1>
+        <p>Botyx est une application de bureau moderne, gratuite et open-source conçue pour communiquer et interagir en toute simplicité.</p>
+        
+        <div class="buttons-container">
+            <!-- Remplace "URL_DU_EXE" par le lien de téléchargement direct de ton .exe GitHub -->
+            <a href="https://github.com/protogameyt/Proto-OS/releases/download/v0.1/botyx-pc.Setup.1.0.0.exe" class="btn-download">Télécharger pour Windows</a>
+            
+            <!-- Remplace l'URL GitHub par celle de ton dépôt -->
+            <a href="https://github.com/protogameyt/Proto-OS/releases/tag/v0.1" target="_blank" class="btn-github">Voir sur GitHub</a>
         </div>
     </section>
 
-    <!-- SECTION DOCS -->
-    <section id="docs">
-        <h2 style="color: #e74c3c; font-size: 2.5em;">Documentation Technique</h2>
-        <div class="card-container">
-            <div class="card">
-                <h3>Kernel</h3>
-                <p>Modifier et basé sur Linux.</p>
+    <section class="features">
+        <h2>Qu'est-ce que Botyx ?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <h3>100% Gratuit & Open Source</h3>
+                <p>Aucune publicité, un code transparent et une liberté totale d'utilisation.</p>
             </div>
-            <div class="card">
-                <h3>UI</h3>
-                <p>🌐En Dévelopement🌐.</p>
+            <div class="feature-card">
+                <h3>Serveurs & Salons</h3>
+                <p>Crée tes propres espaces de discussion, organise tes salons et discute en temps réel.</p>
             </div>
-            <div class="card">
-                <h3>Sécurité</h3>
-                <p>Pare-feu intégré et cryptage natif (🌐en dévelopement🌐).</p>
+            <div class="feature-card">
+                <h3>Léger & Rapide</h3>
+                <p>Conçu pour être fluide et ne pas ralentir ton PC lors de tes sessions de jeu.</p>
             </div>
         </div>
     </section>
 
-    <!-- SECTION FORUM -->
-    <section id="forum">
-        <h2 style="color: #e74c3c; font-size: 2.5em;">Communauté & Forum</h2>
-        <p>Rejoignez des milliers d'utilisateurs pour discuter du futur de ProtoOS.</p>
-        <div style="background: rgba(0,0,0,0.3); padding: 30px; border-radius: 10px;">
-            <p>🗨️ <strong>Dernier sujet :</strong> "🌐La date officiel de sortie de ProtoOS est pas annoncée!🌐</p>
-            <p>🗨️ <strong>Dernier sujet :</strong> "🌐Le dévelopement de cette os est en progression!🌐"</p>
-        </div>
-    </section>
-
-    <!-- SECTION AIDE -->
-    <section id="aide">
-        <h2 style="color: #e74c3c; font-size: 2.5em;">Centre d'Aide</h2>
-        <div style="text-align: left; max-width: 600px; margin: auto;">
-            <p><strong>❓ Comment créer une clé USB bootable ?</strong><br>Utilisez BalenaEtcher ou Rufus avec notre ISO.</p>
-            <p><strong>❓ Est-ce gratuit ?</strong><br>Oui, ProtoOS est et restera toujours gratuit.</p>
-        </div>
-    </section>
-
-    <footer id="contact">
-        <a href="https://discord.gg/eFnAN7Xw" class="https://discord.gg/eFnAN7Xw" target="_blank">Rejoindre le Discord Officiel</a>
-        <p style="margin-top: 20px;">© 2026 ProtoOS Project. Licence GPLv3.</p>
+    <footer>
+        <p>&copy; 2026 Botyx - Tous droits réservés.</p>
     </footer>
 
 </body>
